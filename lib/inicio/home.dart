@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_sprint/inicio/perfil_page.dart';
+import 'package:projeto_sprint/inicio/inserir_dados_page.dart';
 import 'package:projeto_sprint/menu/logo.dart';
 import 'duvidas_frequentes_page.dart';
-import 'cadastro_perfil_page.dart';
 import 'euroia_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,80 +18,74 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
     );
   }
 }
 
 class HomePage extends StatelessWidget {
-  get cargo => '';
-  
-  get email => '';
-  
-  get telefone => '';
-  
-  get endereco => '';
-  
-  get nome => '';
+  final String nameUser;
+  final int idUser;
 
-  get cep => key!;
+  const HomePage( {super.key, required this.nameUser, required this.idUser });
+  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('EuroFarma'),
+        title: const Text('EuroFarma'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            LogoWidget(),
-            SizedBox(height: 25),
+            const LogoWidget(),
+            const SizedBox(height: 25),
             Text(
-              'Bem-vindo, Usuário98',
-              style: TextStyle(fontSize: 20),
+              'Bem-vindo, $nameUser',
+              style: const TextStyle(fontSize: 20),
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Escolha qual seção deseja iniciar:',
               style: TextStyle(fontSize: 16),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             _buildButton(
               context,
-              text: 'Dúvidas Frequentes',
-              color: Colors.blue,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => DuvidasFrequentesPage()),
-                );
-              },
-            ),
-            SizedBox(height: 20),
-            _buildButton(
-              context,
-              text: 'Perfil',
+              text: 'Adicionar Dados',
               color: Colors.yellow,
-              icon: Icons.person,
+              icon: Icons.add_circle_sharp,
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => PerfilPage()),
+                  MaterialPageRoute(builder: (context) => const InserirDadosPage()),
                 );
               },
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             _buildButton(
               context,
               text: 'EuroIA',
               color: Colors.blue,
+              icon: Icons.people_alt_sharp,
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => EuroIAPage()),
+                );
+              },
+            ),
+            const SizedBox(height: 20),
+            _buildButton(
+              context,
+              text: 'Respostas',
+              color: Colors.yellow,
+              icon: Icons.question_answer_sharp,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => DuvidasFrequentesPage(idUser: idUser)),
                 );
               },
             ),
@@ -105,7 +100,7 @@ class HomePage extends StatelessWidget {
       required Color color,
       IconData? icon,
       required VoidCallback onPressed}) {
-    return Container(
+    return SizedBox(
       width: 200, // Largura fixa para todos os botões
       height: 80, // Altura fixa para todos os botões
       child: ElevatedButton(
@@ -121,16 +116,16 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(icon, size: 30),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Text(
                     text,
-                    style: TextStyle(fontSize: 18),
+                    style: const TextStyle(fontSize: 18),
                   ),
                 ],
               )
             : Text(
                 text,
-                style: TextStyle(fontSize: 18),
+                style: const TextStyle(fontSize: 18),
               ),
       ),
     );

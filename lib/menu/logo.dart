@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 class LogoWidget extends StatelessWidget {
+  const LogoWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
+    return const CircleAvatar(
       radius: 60,
       backgroundImage: AssetImage('images/eurofarma_marca.jpg'),
     );

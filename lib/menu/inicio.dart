@@ -4,9 +4,11 @@ import 'package:projeto_sprint/menu/login_form.dart';
 import 'package:projeto_sprint/menu/logo.dart';
 
 class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Padding(
         padding: EdgeInsets.all(20.0),
         child: SingleChildScrollView(
